@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="todolist not-done">
+                <h1>Todos</h1>
+                <input #newItem type="text" class="form-control add-todo" placeholder="Add todo" (keyup.enter)='addItem(newItem.value)'>
+                <button id="addItem" class="btn btn-success" (click)='addItem(newItem.value)'>Add</button>
+
+                <hr>
+                <ul id="sortable" class="list-unstyled" *ngIf='todos && todos.length'>
+                    <li class="ui-state-default" *ngFor='#todo of todos'>
+                        <div class="checkbox">
+                            <label>{{todo.item}}</label>
+                            <button class="btn btn-info" type="button" (click)='checkItem(todo)'> <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="todo-footer">
+                    <strong><span class="count-todos"></span>{{todos.length}}</strong> Item(s) Left
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" *ngIf='checkedItems && checkedItems.length'>
+            <div class="todolist">
+                <h1>Already Done</h1>
+                <ul id="done-items" class="list-unstyled">
+                    <li *ngFor='#checked of checkedItems'>{{checked.item}}
+                        <button class="remove-item btn btn-default btn-xs pull-right" (click)='removeItem(checked)'><span class="glyphicon glyphicon-remove"></span></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
