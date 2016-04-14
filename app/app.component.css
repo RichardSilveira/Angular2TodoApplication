@@ -40,3 +40,6 @@ li.ui-state-default:last-child{
 #addItem{
     margin-top:10px;
 }
+.max-items-alert{
+    color: red;
+}

@@ -3,20 +3,20 @@
         <div class="col-md-6">
             <div class="todolist not-done">
                 <h1>Todos</h1>
-                <input #newItem type="text" class="form-control add-todo" placeholder="Add todo" (keyup.enter)='addItem(newItem.value)'>
-                <button id="addItem" class="btn btn-success" (click)='addItem(newItem.value)'>Add</button>
+                <input #newItem type="text" class="form-control add-todo" placeholder="Add todo" (keyup.enter)='addItem(newItem.value)' (keyup)="0">
+                <button id="addItem" class="btn btn-success" [disabled]="!newItem.value" (click)='addItem(newItem.value)'>Add</button>
 
                 <hr>
                 <ul id="sortable" class="list-unstyled" *ngIf='todos && todos.length'>
                     <li class="ui-state-default" *ngFor='#todo of todos'>
                         <div class="checkbox">
-                            <label>{{todo.item}}</label>
+                            <label [ngStyle]="{color:todos.length > 4 ? 'red' : 'black'}">{{todo.item}}</label>
                             <button class="btn btn-info" type="button" (click)='checkItem(todo)'> <span class="glyphicon glyphicon-thumbs-up"></span></button>
                         </div>
                     </li>
                 </ul>
-                <div class="todo-footer">
-                    <strong><span class="count-todos"></span>{{todos.length}}</strong> Item(s) Left
+                <div class="todo-footer" [hidden]="todos == null || todos.length == 0">
+                    <strong><span class="count-todos" [class.max-items-alert]="todos.length > 4">{{todos.length}}</span></strong>                    Item(s) Left
                 </div>
             </div>
         </div>
